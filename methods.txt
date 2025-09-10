@@ -1,0 +1,115 @@
+Week 1 Review - Detailed Modules
+
+1. Data Ingestion (Extracting and Preprocessing PDF content)
+
+Input source: Course material PDFs (textbooks, notes, lecture slides exported to PDF).
+
+Tools: PyPDF2 / pdfminer.six for text extraction.
+
+Tasks:
+
+Extract text from each page.
+
+Clean text (remove extra spaces, headers/footers, unwanted symbols).
+
+Split content into smaller chunks/sentences for processing.
+
+
+Output: Structured text chunks ready for embeddings.
+
+
+
+---
+
+2. Embeddings + Vector Store (FAISS for Semantic Search)
+
+Model: all-MiniLM-L6-v2 (Sentence-Transformers) for lightweight embeddings.
+
+Embeddings: Convert chunks into numerical vector representations.
+
+Storage: Use FAISS index for efficient semantic similarity search.
+
+Function: Allows fast retrieval of relevant content for a given query.
+
+Output: Top-N relevant text chunks for each student query.
+
+
+
+---
+
+3. Q&A Module (RAG-based pipeline for accurate answers)
+
+Retrieval-Augmented Generation (RAG):
+
+Retrieve context from FAISS (relevant chunks).
+
+Feed context + question into a language model (Flan-T5).
+
+
+Output: Clear, context-aware, 4–5 sentence answers.
+
+Benefits: Reduces hallucination compared to pure LLM.
+
+Handles: Student Q&A like “What is supervised learning?” or “Explain overfitting.”
+
+
+
+---
+
+4. Quiz Generator (MCQ/Short-Answer Generation)
+
+Uses retrieved content from FAISS.
+
+Generates multiple-choice questions (MCQs) and short descriptive questions.
+
+Distractor options for MCQs generated automatically by LLM.
+
+Aligns with curriculum → helps test students’ understanding.
+
+Future add-on: Adaptive quizzes (increasing difficulty as student progresses).
+
+
+
+---
+
+5. Student Tracking (Track Progress & Weak Areas)
+
+Records Q&A sessions and quiz performance.
+
+Identifies weak areas based on wrong answers or repeated clarifications.
+
+Stores session history (per student).
+
+Analytics:
+
+% correct answers in quizzes.
+
+Time spent per topic.
+
+Repeated queries (indicates unclear concepts).
+
+
+Output: Personalized feedback for the student.
+
+
+
+---
+
+6. Frontend (Simple Interface using Streamlit)
+
+Interface: Streamlit web app.
+
+Features:
+
+Upload PDF (study material).
+
+Chatbot Q&A interface.
+
+Quiz interface (MCQs & answers).
+
+Dashboard showing student progress.
+
+
+Output: User-friendly portal accessible via browser.
+
+
